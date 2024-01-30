@@ -78,7 +78,7 @@ top_words_plot_no_stop <- top_words_no_stop %>%
   xlab(NULL) +
   coord_flip() + 
   theme_minimal() +
-  labs(title = "Barplot of All Words: Stopwords Included",
+  labs(title = "Barplot of All Words: No Stopwords ",
        x = NULL,
        y = "Total Count") +
   scale_y_continuous(labels = scales::comma)
