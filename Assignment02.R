@@ -6,6 +6,10 @@ library(ggplot2)
 library(scales)
 library(readxl)
 
+############NOTE###################
+# Some code was altered or copied from Assignment01. Additionally, some code
+# was utilized from in-class examples.
+
 # Upload Data----
 covid <- read_excel("/Users/williamwatson/Downloads/All_Articles_Excel_Dec2019July2020.xlsx", col_names = TRUE)
 
