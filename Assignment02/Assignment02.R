@@ -122,7 +122,49 @@ toks_plot_8 %>%
        y = "Total Count") +
   scale_y_continuous(labels = scales::comma)
 
+rm(chin_ital)
+rm(chin_toks)
+rm(ital_toks)
+rm(toks)
+rm(toks_plot_8)
+
+
 #Part 3----
 
+##Tokenize----
+covid_bigrams <- covid_eng %>%
+  unnest_tokens(word, Abstract, token = "ngrams", n = 2) %>%
+  group_by(word) %>%
+  summarise(total = n()) %>%
+  ungroup()
 
-  
+stop_es <- tibble(word=stopwords::stopwords('es'))
+
+stop_en <- tibble(word=stopwords::stopwords('en'))
+
+##Remove English Stopwords----
+toks <- covid_tidy_stop %>%
+  anti_join(stop_en) %>%
+  anti_join(stop_es)
+
+## Count Bigrams----
+
+NROW(toks)
+
+##Plot w/Stopwords----
+### Top 20 words----
+toks_plot_20 <- toks %>%
+  arrange(desc(total)) %>%
+  slice_head(n = 20)
+
+toks_plot_20 %>%
+  ggplot(aes( x = reorder(word, total), y = total)) +
+  geom_col() +
+  xlab(NULL) +
+  coord_flip() + 
+  theme_minimal() +
+  labs(title = "Barplot of Top 20 Bigrams Contained in English Abstracts",
+       x = NULL,
+       y = "Total Count") +
+  scale_y_continuous(labels = scales::comma)
+
