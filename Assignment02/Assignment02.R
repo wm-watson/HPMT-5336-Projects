@@ -69,7 +69,7 @@ rm(covid_tidy_stop)
 rm(span_covid)
 rm(stop_es)
 rm(toks)
-# Part2----
+# Part 2----
 
 ## English Abstracts----
 covid_eng <- covid %>%
@@ -89,16 +89,40 @@ toks <- covid_tidy_stop %>%
 ## China Words----
 chin_toks <- toks %>%
   group_by(word) %>%
-  mutate(china_count = cumsum(str_detect(word,regex("^[Cc]hin[ae][a-z]*",
+  mutate(cntry_count = cumsum(str_detect(word,regex("^[Cc]hin[ae][a-z]*",
                                                     ignore_case = TRUE))))%>%
-    filter(china_count==1)%>%
+    filter(cntry_count==1)%>%
     ungroup()
 
 ##Italy words----
 ital_toks <- toks %>%
   group_by(word) %>%
-  mutate(ital_count = cumsum(str_detect(word,regex("^[Ii]tal[a-z]*",
+  mutate(cntry_count = cumsum(str_detect(word,regex("^[Ii]tal[a-z]*",
                                                     ignore_case = TRUE))))%>%
-  filter(ital_count==1)%>%
+  filter(cntry_count==1)%>%
   ungroup()
+
+##Bind Together----
+chin_ital <- rbind(ital_toks, chin_toks)
+
+##Plot----
+### Top 8 words----
+toks_plot_8 <- chin_ital %>%
+  arrange(desc(total)) %>%
+  slice_head(n = 8)
+
+toks_plot_8 %>%
+  ggplot(aes( x = reorder(word, total), y = total)) +
+  geom_col() +
+  xlab(NULL) +
+  coord_flip() + 
+  theme_minimal() +
+  labs(title = "Barplot of Top Eight Words Containing 'Ital', 'Chine', or 'China'",
+       x = NULL,
+       y = "Total Count") +
+  scale_y_continuous(labels = scales::comma)
+
+#Part 3----
+
+
   
