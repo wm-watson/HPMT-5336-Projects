@@ -15,7 +15,7 @@ library(stopwords)
 
 # Part 1----
 ## Upload Data----
-covid <- read_excel("C:/Users/watso/Downloads/All_Articles_Excel_Augustuntil9October2020 (1).xlsx", col_names = TRUE)
+covid <- read_excel("C:/Users/watso/Box/PhD/HPMT 5336 - Introduction to NLP/Data/All_Articles_Excel_Augustuntil9October2020 (1).xlsx", col_names = TRUE)
 
 ## Detect Languages----
 detect_language_mixed(covid$Abstract)
