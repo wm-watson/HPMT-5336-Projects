@@ -1,0 +1,34 @@
+---
+title: "Assignment04"
+author: Will Watson"
+---
+
+# Part 1
+
+## Top 10 TF-IDF Words (Discharge and Radiology) by Note
+
+### *Discharge*
+
+1.  Daily
+2.  Your
+3.  Sig
+4.  bid
+5.  refils
+6.  plt
+7.  disp
+8.  glucose
+9.  rbc
+10. hgb
+
+### *Radiology*
+
+1.  aided
+2.  mlo
+3.  fibroglandular
+4.  gadavist
+5.  identifiers
+6.  tomsynthesis
+7.  dimensional
+8.  grouped
+9.  localizer
+10. mammographic
