@@ -114,9 +114,9 @@ ggplot(top_tweets, aes(x = reorder(id, Sentiment), y = Sentiment, fill = Method)
 
    wide_tweets <- top_tweets %>%
      pivot_wider(
-       names_from = Method,  # The column that has the variable names in the current long format
-       values_from = Sentiment,     # The column that has the values associated with those variable names
-       id_cols = c(id, text)      # The identifier columns
+       names_from = Method,  
+       values_from = Sentiment,     
+       id_cols = c(id, text)      
      )
 
 
