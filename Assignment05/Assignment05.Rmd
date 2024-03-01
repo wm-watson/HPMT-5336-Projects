@@ -1,0 +1,12 @@
+---
+title: "Assignment05"
+author: Will Watson"
+---
+
+# Overall Observations
+
+I choose, rather arbitrarily, to focus on the words, "death" and "therapeutic." When examining the graphics for "death," nothing too surprising stuck out. "Death" appeared to be most strongly correlated with "mortality," "illness," "hospitalization," and "infection." During a cursory scan, was associated with "ii" and "It" as well. "It" is surprising that it is still in the corpus as I would have presumed "It" would have been removed when common English stop-words were removed. I'm also curious as to what the context is of "ii." "Therapeutic" was most strongly associated with "potential," "diagnostic," "effective," and "antiviral." There were no surprising words associated with "therapeutic."
+
+## Part 2
+
+In order the improve the plots for both words from the first iteration to the second, I removed all tokens that were less than two characters in length. I also removed all numbers. The above steps had no affect on the plot for "therapeutic", but did improve the readability for "death." The removal of numbers was substantial. Rather than attempting to identify a level of correlation that would result in legible graphics, I chose the first 50 words that were most correlated with my words of interest.
