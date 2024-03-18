@@ -1,0 +1,159 @@
+---
+title: "Assignment04"
+author: Will Watson"
+---
+
+# Part 1
+For Part 1, I kept the same number of dimensions (15 dimensions) for all three word2vec models and only differed in the number of iterations. The original was 20, the second 100, and the third 1,000. The results are below:
+> predict(tweets_w2v, "morphine", type = "nearest", top_n = 5)
+$morphine
+     term1      term2 similarity rank
+1 morphine intoxicate  0.9797922    1
+2 morphine    bedroom  0.9710935    2
+3 morphine    heroine  0.9631739    3
+4 morphine   nicotine  0.9611040    4
+5 morphine     heroin  0.9539831    5
+
+> predict(tweets_w2v_100, "morphine", type = "nearest", top_n = 5)
+$morphine
+     term1   term2 similarity rank
+1 morphine    just  0.8880363    1
+2 morphine  camila  0.8439848    2
+3 morphine    like  0.8037637    3
+4 morphine  better  0.7623845    4
+5 morphine mexican  0.7314258    5
+
+> predict(tweets_w2v_1000, "morphine", type = "nearest", top_n = 5)
+$morphine
+     term1   term2 similarity rank
+1 morphine      gt  0.8565168    1
+2 morphine tylenol  0.8196477    2
+3 morphine     and  0.7510621    3
+4 morphine      eu  0.7499959    4
+5 morphine   about  0.7438863    5
+
+Interestingly, it appears as if the more the iterations increase, the less accurate the models become. I would have thought it would be the opposite. I suppose it may be due to the fact that the more iterations there are, the more likely it is for the model to find results that weaken any similarities. I would hazard a guess that there is a "sweet spot" where iterations = "n" and "n" is the most accurate number of iterations.
+
+#Part 2
+
+The five closest words to "diabetes" in my discharbe note embeddings are:
+1. dm
+2. mellitus
+3. dm2
+4. t2dm
+5. dmii
+
+The five closest words to "diabetes" in my radiology note embeddings are:
+1. aml
+2. hypoxia
+3. abuse
+4. dissiness
+5. motor
+
+The top five words for both discharge and radiology notes make sense. "Diabetes" is closest to different abbreviations/acronyms for type 2 diabetes in the discharge summaries. Not a lot of interesting knowledge whoever. The five terms closest to "diabetes" in the radiology report are more interesting. I'm not sure what "aml" stands for, but it seems as if the remaining terms are associated with a diabetic patient who may feel faint/dizzy, has trouble walking around, or have low blood oxygen levels associated with peripheral vascular disease or peripheral artery disease.
+
+#Part 3: Bonus
+When using the pre-determined GLoVE embeddings, the it appears as if the the GLoVE embeddings aren't as useful the more general the term. As a word becomes more specilaized, e.g., "retinopathy", the embeddings appear to contain more value. For instance, the words closest to "Foot" and "Retinopahty" are, respectively:
+1. feet
+2. shoulder
+3. corner
+4. chest
+5. leg
+
+1. ketoacidosis
+2. nephropathy
+3. neuropathy
+4. macular
+5. cataracts
+
+Please see the below for the results of all five of my words.
+
+> tidy_glove %>%
++   nearest_neighbors("foot")
+# A tibble: 400,000 × 2
+   item1    value
+   <chr>    <dbl>
+ 1 foot     1    
+ 2 feet     0.733
+ 3 shoulder 0.649
+ 4 corner   0.640
+ 5 chest    0.637
+ 6 leg      0.629
+ 7 walking  0.627
+ 8 knee     0.626
+ 9 front    0.625
+10 inside   0.623
+# ℹ 399,990 more rows
+# ℹ Use `print(n = ...)` to see more rows
+> 
+> tidy_glove %>%
++   nearest_neighbors("ulcer")
+# A tibble: 400,000 × 2
+   item1      value
+   <chr>      <dbl>
+ 1 ulcer      1    
+ 2 ulcers     0.732
+ 3 heartburn  0.670
+ 4 peptic     0.669
+ 5 stomach    0.659
+ 6 gastric    0.646
+ 7 arthritis  0.642
+ 8 bleeding   0.625
+ 9 clot       0.619
+10 medication 0.617
+# ℹ 399,990 more rows
+# ℹ Use `print(n = ...)` to see more rows
+> 
+> tidy_glove %>%
++   nearest_neighbors("diabetes")
+# A tibble: 400,000 × 2
+   item1          value
+   <chr>          <dbl>
+ 1 diabetes       1    
+ 2 hypertension   0.848
+ 3 obesity        0.799
+ 4 arthritis      0.780
+ 5 cancer         0.779
+ 6 alzheimer      0.774
+ 7 asthma         0.765
+ 8 cardiovascular 0.756
+ 9 disease        0.733
+10 epilepsy       0.730
+# ℹ 399,990 more rows
+# ℹ Use `print(n = ...)` to see more rows
+> 
+> tidy_glove %>%
++   nearest_neighbors("debridement")
+# A tibble: 400,000 × 2
+   item1           value
+   <chr>           <dbl>
+ 1 debridement     1    
+ 2 suturing        0.708
+ 3 cholecystectomy 0.633
+ 4 stoping         0.633
+ 5 phlebotomy      0.630
+ 6 resection       0.620
+ 7 scarification   0.610
+ 8 sympathectomy   0.597
+ 9 enucleation     0.596
+10 craniotomy      0.590
+# ℹ 399,990 more rows
+# ℹ Use `print(n = ...)` to see more rows
+> 
+> tidy_glove %>%
++   nearest_neighbors("retinopathy")
+# A tibble: 400,000 × 2
+   item1         value
+   <chr>         <dbl>
+ 1 retinopathy   1    
+ 2 ketoacidosis  0.600
+ 3 nephropathy   0.598
+ 4 neuropathy    0.594
+ 5 macular       0.570
+ 6 cataracts     0.541
+ 7 prematurity   0.540
+ 8 gastroparesis 0.529
+ 9 luxation      0.523
+10 glaucoma      0.510
+# ℹ 399,990 more rows
+# ℹ Use `print(n = ...)` to see more rows
