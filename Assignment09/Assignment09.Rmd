@@ -12,19 +12,53 @@ The data used was that of Amazon Movie Review Snippets.
 
 # Part 1
 
--   The top 10 words that contribute most to positive reviews: term
-    estimate <chr> <dbl> 1 tfidf_text_best 0.134 2 tfidf_text_funny
-    0.127 3 tfidf_text_heart 0.116 4 tfidf_text_film 0.114 5
-    tfidf_text_with 0.112 6 tfidf_text_performances 0.103 7
-    tfidf_text_beautifully 0.101 8 tfidf_text_great 0.101 9
-    tfidf_text_masterpiece 0.0982 10 tfidf_text_good 0.0972
+-   The top 10 words that contribute most to positive reviews:
 
--   The top 10 words that contribute most to negative reviews: term
-    estimate <chr> <dbl> 1 tfidf_text_worst -0.153 2 tfidf_text_bad
-    -0.131 3 tfidf_text_too -0.0962 4 tfidf_text_dull -0.0902 5
-    tfidf_text_doesn't -0.0898 6 tfidf_text_unfunny -0.0880 7
-    tfidf_text_lacks -0.0872 8 tfidf_text_badly -0.0870 9
-    tfidf_text_heavy -0.0817 10 tfidf_text_lack -0.0801
+-   term estimate <chr> <dbl>
+
+    -   1 tfidf_text_best 0.134
+
+    -   2 tfidf_text_funny 0.127
+
+    -   3 tfidf_text_heart 0.116
+
+    -   4 tfidf_text_film 0.114
+
+    -   5 tfidf_text_with 0.112
+
+    -   6 tfidf_text_performances 0.103
+
+    -   7 tfidf_text_beautifully 0.101
+
+    -   8 tfidf_text_great 0.101
+
+    -   9 tfidf_text_masterpiece 0.0982
+
+    -   10 tfidf_text_good 0.0972
+
+-   The top 10 words that contribute most to negative reviews:
+
+-   term estimate <chr> <dbl>
+
+    -   1 tfidf_text_worst -0.153
+
+    -   2 tfidf_text_bad -0.131
+
+    -   3 tfidf_text_too -0.0962
+
+    -   4 tfidf_text_dull -0.0902
+
+    -   5 tfidf_text_doesn't -0.0898
+
+    -   6 tfidf_text_unfunny -0.0880
+
+    -   7 tfidf_text_lacks -0.0872
+
+    -   8 tfidf_text_badly -0.0870
+
+    -   9 tfidf_text_heavy -0.0817
+
+    -   10 tfidf_text_lack -0.0801
 
 # Part 2
 
@@ -39,8 +73,8 @@ of the variance in the dependent variable.
         .metric .estimator mean n std_err .config\
         <chr> <chr> <dbl> <int> <dbl> <chr>\
         1 rmse standard 1.72 10 0.0228 Preprocessor1_Model1
+        2 rsq standard 0.253 10 0.00901 Preprocessor1_Model1
         
 # Part 3
 
 
-        2 rsq standard 0.253 10 0.00901 Preprocessor1_Model1
