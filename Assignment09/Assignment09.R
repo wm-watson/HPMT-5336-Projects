@@ -343,3 +343,18 @@ review_fit %>%
     subtitle = paste("These features are the most importance",
                      "in predicting the rating of movie")
   )
+
+
+#Plot prediciton
+final_fitted %>%
+  collect_predictions() %>%
+  ggplot(aes(sentiment, .pred)) +
+  geom_abline(lty = 2, color = "gray80", size = 1.5) +
+  geom_point(alpha = 0.3) +
+  labs(
+    x = "Truth",
+    y = "Predicted (sentiment)",
+    title = paste("Predicted and true sentiments for the testing set of",
+                  "Amazon movie reviews"),
+    subtitle = "For the testing set, predictions are more reliable after 1850"
+  )
